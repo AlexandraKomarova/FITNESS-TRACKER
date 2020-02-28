@@ -26,18 +26,13 @@ app.use(express.static("public"));
 const mongoURI = process.env.MONGODB_URI || "mongodb://localhost/workout";
 
 // DATABASE
-mongoose.connect("mongodb://localhost/workout",{
+mongoose.connect(mongoURI,{
   useNewUser: true,
   useUnifiedTopology: true
 })
 
 app.use(htmlRoutes)
 app.use(apiRoutes)
-
-app.get("/api/workouts", async (req, res) => {
-  const allWorkouts = await db.Workout.find({})
-  res.json(allWorkouts)
-})
 
 // Start the server
 app.listen(PORT, () => {
