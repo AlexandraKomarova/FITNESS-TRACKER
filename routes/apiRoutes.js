@@ -20,8 +20,8 @@ router.put("/api/workouts/:id", async (req, res) => {
     const workoutID = req.params.id
     console.log("WORKOUT ID", workoutID)
     const newExercise = req.body
-    const idQuery = {_id: workoutID}
-    const update = {$push:{ exercises: newExercise }}
+    const idQuery = { _id: workoutID}
+    const update = { $push:{ exercises: newExercise }}
     const updatedWorkout = await db.Workout.findByIdAndUpdate(idQuery,update)
     res.json(updatedWorkout)
 })
